@@ -70,3 +70,8 @@ node index.js
 Im open to ideas and contributions! Feel free to submit pull requests (PRs).
 
 > **Note:** Please commit both TypeScript and generated JavaScript files. Currently, the bot's hosting environment does not support TypeScript compilation, so JavaScript files are required in the repository. (This may change if we switch to a host with TypeScript support.)
+
+**<h3 align="left">Support My work</h3>**
+
+<p align="left"><a href="https://buymeacoffee.com/kindcoder" target="_blank"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-fde047?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white" height="36" style="margin-right: 4px"></a></p>
+<a href="https://app.daily.dev/kindcoder">
