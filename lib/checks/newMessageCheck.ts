@@ -1,4 +1,5 @@
 import newPost from "../bsky/newPost";
+import { log_success, log_warning } from "../console";
 import addRecheck from "../db/addRecheck";
 import getLatest from "../db/getLatest";
 import updateLatest from "../db/updateLatest";
@@ -55,8 +56,6 @@ async function newMessagesCheck() {
     // Send the new post to Bluesky
     const postData = await newPost(message_text, hashtags);
 
-    //console.log(postData);
-
     updateLatest(latestPoliceUpdate.id);
 
     if (latestPoliceUpdate.isActive) {
@@ -67,11 +66,10 @@ async function newMessagesCheck() {
         postData.cid
       );
     }
-
-    console.log("New message posted");
+    log_success("New message posted");
     return;
   } else {
-    console.log("No new messages");
+    log_warning("No new messages");
     return;
   }
 }

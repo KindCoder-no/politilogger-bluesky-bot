@@ -26,55 +26,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-//import { CronJob } from "cron";
 const dotenv = __importStar(require("dotenv"));
 const database_check_1 = __importDefault(require("./lib/checks/database-check"));
 const messageRecheck_1 = __importDefault(require("./lib/checks/messageRecheck"));
 const newMessageCheck_1 = __importDefault(require("./lib/checks/newMessageCheck"));
+const console_1 = require("./lib/console");
 dotenv.config();
 async function main() {
     await (0, database_check_1.default)();
-    console.log("Database check done!");
-    console.log("Starting new messages check...");
+    (0, console_1.log_success)("Database check done!");
+    (0, console_1.log_success)("Starting main loop");
     setInterval(async () => {
         await (0, newMessageCheck_1.default)();
         await (0, messageRecheck_1.default)();
     }, 10 * 1000);
-    //await agent.login({ identifier: process.env.BLUESKY_USERNAME!, password: process.env.BLUESKY_PASSWORD!})
-    /*const postData = await agent.post({
-          text: "New test from api"
-      });
-  
-      console.log(postData);
-      console.log("Just posted!")*/
-    /*const postData2 = await agent.getPosts({ uris: ["at://did:plc:tthp2kjhaq6itllpsuaq4pdo/app.bsky.feed.post/3laswksdhdf27"] });
-      console.log(postData2.data);
-  
-  
-      const reply = await agent.post({
-          text: "Reply from api",
-          reply: {
-              parent: {
-                  uri: "at://did:plc:tthp2kjhaq6itllpsuaq4pdo/app.bsky.feed.post/3laswksdhdf27",
-                  cid: "bafyreic5gkgbv4ujmgwzbbwqk3rdysphbi5lkkyyk7szhuzqvpk77iaswm"
-              },
-              root: {
-                  uri: "at://did:plc:tthp2kjhaq6itllpsuaq4pdo/app.bsky.feed.post/3laswksdhdf27",
-                  cid: "bafyreidv26g444dcvgcx2dm4viyum2hh7thkbr2adugsl65hz7lfup36im"
-              }
-          }
-      })
-  
-      console.log(reply);*/
 }
 main();
-// Run this on a cron job
-const scheduleExpressionMinute = "* * * * *"; // Run once every minute for testing
-const scheduleExpression = "0 */3 * * *"; // Run once every three hours in prod
-/*const newMessageCheckJob = new CronJob(
-  scheduleExpressionMinute,
-  newMessagesCheck
-); // change to scheduleExpressionMinute for testing
-const messageRecheckJob = new CronJob(scheduleExpressionMinute, messageRecheck);
-newMessageCheckJob.start();
-messageRecheckJob.start();*/

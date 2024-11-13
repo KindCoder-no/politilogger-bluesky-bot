@@ -1,4 +1,5 @@
 import fs from "fs";
+import { log_warning } from "../console";
 
 export default async function databaseCheck() {
   // Check if latest.json exists
@@ -12,7 +13,7 @@ export default async function databaseCheck() {
 async function latestDatabaseCheck() {
   // Check if latest.json exists
   if (!fs.existsSync("latest.json")) {
-    console.log("latest.json does not exist, creating file");
+    log_warning("latest.json does not exist, creating file");
     fs.writeFileSync("latest.json", JSON.stringify({ latest: "" }));
     return;
   } else {
@@ -23,7 +24,7 @@ async function latestDatabaseCheck() {
 async function rechecksDatabaseCheck() {
   // Check if rechecks.json exists
   if (!fs.existsSync("rechecks.json")) {
-    console.log("rechecks.json does not exist, creating file");
+    log_warning("rechecks.json does not exist, creating file");
     fs.writeFileSync("rechecks.json", JSON.stringify([]));
     return;
   } else {

@@ -2,14 +2,15 @@ import * as dotenv from "dotenv";
 import databaseCheck from "./lib/checks/database-check";
 import messageRecheck from "./lib/checks/messageRecheck";
 import newMessagesCheck from "./lib/checks/newMessageCheck";
+import { log_success } from "./lib/console";
 
 dotenv.config();
 
 async function main() {
   await databaseCheck();
-  console.log("Database check done!");
+  log_success("Database check done!");
 
-  console.log("Starting new messages check...");
+  log_success("Starting main loop");
 
   setInterval(async () => {
     await newMessagesCheck();

@@ -1,4 +1,5 @@
 import newReply from "../bsky/newReply";
+import { log_success, log_warning } from "../console";
 import getRechecks from "../db/getRechecks";
 import removeRecheckByPoliceId from "../db/removeRecheckByPoliceId";
 import updateRecheckLatestMessage from "../db/updateRecheckLatestMessage";
@@ -6,18 +7,15 @@ import fetchPoliceUpdateById from "../police-api/fetchPoliceUpdateById";
 
 async function messageRecheck() {
   // Get messages to recheck
-  console.log("Checking for new messages to recheck");
   const rechecks = await getRechecks();
 
   for (let check of rechecks) {
-    //console.log(check);
     const police_check = await fetchPoliceUpdateById(check.police_id);
-    //console.log(police_check);
 
     const policeMessages = police_check.messages;
 
     if (check.last_message_id != policeMessages[policeMessages.length - 1].id) {
-      console.log("New message found");
+      log_success("New message found");
 
       const currentLastMessageId = Number(check.last_message_id.split("-")[1]);
 
@@ -31,16 +29,16 @@ async function messageRecheck() {
       );
 
       if (reply) {
-        console.log("Reply sent");
+        log_success("Reply sent");
         await updateRecheckLatestMessage(check.police_id, newMessageData.id);
 
         if (police_check.isActive == false) {
-          console.log("Message is no longer active");
+          log_warning("Message is no longer active, removing recheck");
           await removeRecheckByPoliceId(check.police_id);
         }
       }
     } else if (police_check.isActive == false) {
-      console.log("Message is no longer active");
+      log_warning("Message is no longer active, removing recheck");
       await removeRecheckByPoliceId(check.police_id);
     }
   }
