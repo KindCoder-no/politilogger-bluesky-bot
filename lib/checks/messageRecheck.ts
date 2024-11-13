@@ -19,7 +19,7 @@ async function messageRecheck() {
     if (check.last_message_id != policeMessages[policeMessages.length - 1].id) {
       console.log("New message found");
 
-      const currentLastMessageId = Number(check.last_message.split("-")[1]);
+      const currentLastMessageId = Number(check.last_message_id.split("-")[1]);
 
       const newMessageData = policeMessages[currentLastMessageId + 1];
 
