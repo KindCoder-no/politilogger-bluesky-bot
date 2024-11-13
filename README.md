@@ -1,25 +1,72 @@
-# Politi Logger Bluesky bot
+# Politi Logger Bluesky Bot
 
-**NB! This application is using politiet.no api's, and if they contact me and disallow the usage of their api, this repo will be removed/depricated and the bot will become offline**
+A bot that fetches the latest updates from [politiloggen](https://www.politiet.no/politiloggen/) and posts them to the [Politi Logger](https://bsky.app/profile/politilogger.bsky.social) Bluesky account.
 
-This is an easy integration with [https://www.politiet.no/politiloggen/](https://www.politiet.no/politiloggen/), the bot fetches the latest messages and sends it to the Blyesky user called [politilogger](https://bsky.app/profile/politilogger.bsky.social)
+> **Note**: This application uses the public APIs from politiet.no. If we receive a request to stop using their API, this repository will be deprecated, and the bot will be taken offline.
 
-## Development
+## Features
+
+- Fetches and shares real-time updates from politiet.no's log.
+- Posts updates to Bluesky under the user `@politilogger.bsky.social`.
+
+## Getting Started
+
+### Prerequisites
+
+- **Do not manually modify JavaScript files** – these are auto-generated from TypeScript files by the compiler.
+- **Environment Variables**: Use an App Password for secure authentication.
 
 ### Setup
 
-1. Install required packages with: `npm install`
-2. Install Typescript: `npm i -g typescript`
-3. Install Node.js: `npm i -g ts-node`
-4. Make a copy of the example `.env` file by running: `cp example.env .env`. Set your username and password in .env. Use an App Password.
+1. Clone the repository.
+2. Install required packages with:
 
-### Working
+```
+npm install
+```
 
-1. To generate/update the javascript files run: `npx tsc` if you want the files to auto update on save run: `npx tsc -w`
-2. Start the bot with `node index.js`
+3. Install TypeScript globally:
+
+```
+npm i -g typescript
+```
+
+4. Install Node.js typescript globally:
+
+```
+npm i -g ts-node
+```
+
+5. Copy the example environment file and configure your credentials:
+
+```
+cp example.env .env
+```
+
+6. Update the `.env` with your Bluesky username and App Password
+
+### Development Workflow
+
+1. To compile TypeScript files, run:
+
+```
+npx tsc
+```
+
+- For continuous compilation, use:
+
+```
+npx tsc -w
+```
+
+2. Start the bot:
+
+```
+node index.js
+```
 
 ### Contributing
 
-Im open for ideas and contributions, PR's are welcome.
+Im open to ideas and contributions! Feel free to submit pull requests (PRs).
 
-Remember to push the generated javascript files to the repo (This is because the hosting of the bot does not support Typescript compiling... I will probably change host later)
+> **Note:** Please commit both TypeScript and generated JavaScript files. Currently, the bot's hosting environment does not support TypeScript compilation, so JavaScript files are required in the repository. (This may change if we switch to a host with TypeScript support.)
