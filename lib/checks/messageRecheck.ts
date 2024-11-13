@@ -21,6 +21,12 @@ async function messageRecheck() {
 
       const newMessageData = policeMessages[currentLastMessageId + 1];
 
+      if (!newMessageData) {
+        log_warning("Message not found, removing recheck");
+        await removeRecheckByPoliceId(check.police_id);
+        return;
+      }
+
       // Send the new post to Bluesky
       const reply = await newReply(
         newMessageData.text,
