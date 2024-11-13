@@ -74,4 +74,3 @@ Im open to ideas and contributions! Feel free to submit pull requests (PRs).
 **<h3 align="left">Support My work</h3>**
 
 <p align="left"><a href="https://buymeacoffee.com/kindcoder" target="_blank"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-fde047?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white" height="36" style="margin-right: 4px"></a></p>
-<a href="https://app.daily.dev/kindcoder">
