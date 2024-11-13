@@ -1,0 +1,27 @@
+{
+  "name": "politilogger-bluesky-bot",
+  "version": "1.0.0",
+  "description": "Politilogger for BlueSky",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Bluesky",
+    "Politiet"
+  ],
+  "author": "Emre Sanden (KindCoder-no)",
+  "license": "ISC",
+  "dependencies": {
+    "@atproto/api": "^0.13.15",
+    "@atproto/common": "^0.4.4",
+    "axios": "^1.7.7",
+    "cron": "^3.2.1",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "process": "^0.11.10"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0"
+  }
+}
