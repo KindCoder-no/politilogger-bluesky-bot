@@ -10,7 +10,7 @@ async function main() {
   await databaseCheck();
   log_success("Database check done!");
 
-  log_success("Starting main loop");
+  log_success("Running");
 
   setInterval(async () => {
     await newMessagesCheck();

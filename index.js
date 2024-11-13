@@ -35,7 +35,7 @@ dotenv.config();
 async function main() {
     await (0, database_check_1.default)();
     (0, console_1.log_success)("Database check done!");
-    (0, console_1.log_success)("Starting main loop");
+    (0, console_1.log_success)("Running");
     setInterval(async () => {
         await (0, newMessageCheck_1.default)();
         await (0, messageRecheck_1.default)();
