@@ -19,12 +19,17 @@ async function messageRecheck() {
 
       const currentLastMessageId = Number(check.last_message_id.split("-")[1]);
 
-      const newMessageData = policeMessages[currentLastMessageId + 1];
+      let newMessageData = policeMessages[currentLastMessageId + 1];
 
       if (!newMessageData) {
         log_warning("Message not found, removing recheck");
         await removeRecheckByPoliceId(check.police_id);
         return;
+      }
+
+      // Limit the message to max 280 characters
+      if (newMessageData.length > 280) {
+        newMessageData = newMessageData.slice(0, 295) + "...";
       }
 
       // Send the new post to Bluesky
