@@ -27,6 +27,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
+const loginClient_1 = __importDefault(require("./lib/bsky/loginClient"));
 const database_check_1 = __importDefault(require("./lib/checks/database-check"));
 const messageRecheck_1 = __importDefault(require("./lib/checks/messageRecheck"));
 const newMessageCheck_1 = __importDefault(require("./lib/checks/newMessageCheck"));
@@ -36,6 +37,8 @@ async function main() {
     await (0, database_check_1.default)();
     (0, console_1.log_success)("Database check done!");
     (0, console_1.log_success)("Running");
+    // Create agent
+    await (0, loginClient_1.default)();
     setInterval(async () => {
         await (0, newMessageCheck_1.default)();
         await (0, messageRecheck_1.default)();

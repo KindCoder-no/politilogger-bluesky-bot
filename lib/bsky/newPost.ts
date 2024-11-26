@@ -1,4 +1,6 @@
 import { AtpAgent } from "@atproto/api";
+import fs from "fs";
+import loginClient from "./loginClient";
 
 async function newPost(postText: string, hashtags: string[]) {
   // Create agent
@@ -7,10 +9,22 @@ async function newPost(postText: string, hashtags: string[]) {
   });
 
   // Login to Bluesky
-  await agent.login({
+  /*await agent.login({
     identifier: process.env.BLUESKY_USERNAME!,
     password: process.env.BLUESKY_PASSWORD!,
-  });
+  });*/
+
+  // Get session data from the agent
+  let sessionData = fs.readFileSync("session.json", "utf-8");
+
+  // If the session data is not available, throw an error
+  if (!sessionData) {
+    await loginClient();
+    sessionData = fs.readFileSync("session.json", "utf-8");
+  }
+
+  // Restore the session data
+  await agent.resumeSession(JSON.parse(sessionData));
 
   // Create facets for each hashtag
   const facets = hashtags.map((hashtag) =>

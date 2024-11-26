@@ -9,3 +9,4 @@ package-lock.json
 #Database files
 latest.json
 rechecks.json
+session.json
